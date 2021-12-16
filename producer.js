@@ -1,35 +1,25 @@
 const ip = require('ip')
 
-const { Kafka, CompressionTypes, logLevel } = require('kafkajs')
+const { Kafka } = require('kafkajs')
 
 const host = process.env.HOST_IP || ip.address()
 
 const kafka = new Kafka({
-  logLevel: logLevel.DEBUG,
   brokers: [`${host}:9092`],
-  clientId: 'example-producer',
+  clientId: 'my-app',
 })
 
-const topic = 'topic-test'
 const producer = kafka.producer()
-
-const getRandomNumber = () => Math.round(Math.random(10) * 1000)
-const createMessage = num => ({
-  key: `key-${num}`,
-  value: `value-${num}-${new Date().toISOString()}`,
-})
 
 const sendMessage = () => {
   return producer
     .send({
-      topic,
-      compression: CompressionTypes.GZIP,
-      messages: Array(getRandomNumber())
-        .fill()
-        .map(_ => createMessage(getRandomNumber())),
+      topic: 'test-topic',
+      messages: [
+        { value: 'Hello KafkaJS user!' },
+      ],
     })
     .then(console.log)
-    .catch(e => console.error(`[example/producer] ${e.message}`, e))
 }
 
 const run = async () => {
