@@ -1,0 +1,26 @@
+{
+  "name": "kafkajs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "consumer.js",
+  "type":"commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:consumer": "node consumer.js",
+    "start:producer": "node producer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d-fuji/kafkajs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d-fuji/kafkajs/issues"
+  },
+  "homepage": "https://github.com/d-fuji/kafkajs#readme",
+  "dependencies": {
+    "ip": "^1.1.5",
+    "kafkajs": "^1.15.0"
+  }
+}
